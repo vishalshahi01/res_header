@@ -1,3 +1,6 @@
+
+
+
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
@@ -5,41 +8,84 @@ function App() {
   const [navOpen, setNavOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   const [visible, setVisible] = useState(true);
+  const [showNavbar, setShowNavbar] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
-      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+      const isScrollingDown = prevScrollPos < currentScrollPos;
+
+      // If scrolling down and not at the top of the page, hide navbar
+      if (isScrollingDown && currentScrollPos > 0) {
+        setShowNavbar(false);
+      } else {
+        // If scrolling up or at the top of the page, show navbar
+        setShowNavbar(true);
+      }
+
       setPrevScrollPos(currentScrollPos);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [prevScrollPos]);
+
+  const handleNavLinkClick = () => {
+    setNavOpen(false); // Close the navigation bar when a link is clicked
+  };
 
   return (
     <>
-      <div className={visible ? "navbar" : "navbar hidden"}>
-        <div className="navbar-container">
-          <h2 className="brand">Animals</h2>
-          <div
-            className="toggle-button"
-            onClick={() => setNavOpen(!navOpen)}
-          >
-            <div className={navOpen ? "hamburger open" : "hamburger"}></div>
-            <div className={navOpen ? "hamburger open" : "hamburger"}></div>
-            <div className={navOpen ? "hamburger open" : "hamburger"}></div>
+      {showNavbar && (
+        <section
+          style={{
+            backgroundColor: "black",
+            padding: "10px",
+            position: "fixed",
+            top: 0,
+            width: "100%",
+          }}
+          className={visible ? "navbar" : "navbar hidden"}
+        >
+          <div className="navbar-container">
+            <h2 className="brand">Animals</h2>
+            <div
+              className="toggle-button"
+              onClick={() => setNavOpen(!navOpen)}
+            >
+              <div className={navOpen ? "hamburger open" : "hamburger"}></div>
+              <div className={navOpen ? "hamburger open" : "hamburger"}></div>
+              <div className={navOpen ? "hamburger open" : "hamburger"}></div>
+            </div>
+            <div className={navOpen ? "nav-links open" : "nav-links"}>
+              <a href="#home" onClick={handleNavLinkClick}>
+                Home
+              </a>
+              <a href="#about" onClick={handleNavLinkClick}>
+                About
+              </a>
+              <a href="#skills" onClick={handleNavLinkClick}>
+                Species
+              </a>
+              <a href="#projects" onClick={handleNavLinkClick}>
+                Future
+              </a>
+            </div>
           </div>
-          <div className={navOpen ? "nav-links open" : "nav-links"}>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Species</a>
-            <a href="#projects">Future</a>
-          </div>
-        </div>
-      </div>
+        </section>
+      )}
       <div className="content">
+        {/* Content sections */}
+        <div className="content">
         {/*  */}
+
+
+        {/* new */}
+        <div style={{ marginTop: "50px" }}>
+</div>
 
         <section id="home">
           <h1>Animal</h1>
@@ -176,6 +222,7 @@ function App() {
             </ul>
           </div>
         </section>
+      </div>
       </div>
     </>
   );

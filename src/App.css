@@ -1,3 +1,5 @@
+
+
 .navbar {
   background-color: #363333;
   padding: 10px 0;
@@ -70,6 +72,10 @@
     display: flex;
   }
 }
+#home{
+  margin-top:80px;
+}
+
 
 
 .home-content,
