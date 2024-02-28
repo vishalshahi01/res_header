@@ -1,73 +1,104 @@
 .navbar {
-    background-color: #363333;
-    padding: 10px 0;
-  }
+  background-color: #363333;
+  padding: 10px 0;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
   
-  .navbar-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  .brand {
-    color: white;
-    margin: 0;
-  }
-  
-  .nav-links {
-    display: flex;
-  }
-  
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .nav-links a:hover {
-    background-color: #555;
-  }
-  
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.brand {
+  color: white;
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: #555;
+}
+
+.toggle-button {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.hamburger.open {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 750px) {
   .toggle-button {
+    display: block;
+  }
+
+  .nav-links {
     display: none;
-    cursor: pointer;
+    flex-direction: column;
+    background-color: #333;
+   
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
   }
-  
-  .hamburger {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 5px 0;
-    transition: transform 0.3s ease-in-out;
+
+  .nav-links.open {
+    display: flex;
   }
-  
-  .hamburger.open {
-    transform: rotate(180deg);
-  }
-  
- 
-  @media (max-width: 750px) {
-    .toggle-button {
-      display: block;
-    }
-  
-    .nav-links {
-      display: none;
-      flex-direction: column;
-      background-color: #333;
-      padding: 20px;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-    }
-  
-    .nav-links.open {
-      display: flex;
-    }
-  }
-  
+}
+
+
+.home-content,
+.about-content,
+.projects-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.animal-image {
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.home-content2 {
+  text-align: center;
+}
+
+.home-content2 p {
+  margin-top: 10px;
+}
+
+.content {
+  text-align: center;
+}
+
+.hidden {
+  transform: translateY(-100%);
+}
